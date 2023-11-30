@@ -37,7 +37,7 @@ module.exports = defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
         browserName: "chromium",
-        launchOptions: {args: ["--start-maximized"]},
+        //launchOptions: {args: ["--start-maximized"]},
         viewport: {'width': 1920,
 				         'height': 1080}, 
       },
