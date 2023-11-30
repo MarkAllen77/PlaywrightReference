@@ -59,11 +59,55 @@ test('Handle Web Objects', async ({page}) => {
     //-----How to handle Dropdown-----
     const pageURL = 'https://testautomationpractice.blogspot.com/'
     const countryDropdown = page.locator('#country')
-    //const lastnameInput = page.locator('//input[@id="lastName"]')
 
     await page.goto(pageURL)
 
+    //commands to select options
     await countryDropdown.selectOption({label:'Japan'})
+    await page.waitForTimeout(2000)
+
+    await countryDropdown.selectOption('United States')
+    await page.waitForTimeout(2000)
+
+    await countryDropdown.selectOption({value: 'uk'})
+    await page.waitForTimeout(2000)
+
+    await countryDropdown.selectOption({index: 8})
+    await page.waitForTimeout(2000)
+
+    //assertions
+    const options1 = await page.locator('#country option')
+    await expect(options1).toHaveCount(10)
+
+    const options2 = await page.$$('#country option')
+    console.log('Number of options: ', options2.length)
+    await expect(options2.length).toBe(10)
+
+    const content = await countryDropdown.textContent()
+    await expect(content.includes('Australia')).toBeTruthy()
+
+    let status = false
+    for (const option of options2)
+    {
+        const value = await option.textContent()
+        console.log(value)
+        if (value.includes('France'))
+        {
+            status = true
+            break
+        }
+    }
+    expect(status).toBeTruthy()
+
+    for (const option of options2)
+    {
+        const value = await option.textContent()
+        if (value.includes('China'))
+        {
+            await page.selectOption('#country', option)
+            break
+        }
+    }
 
     await page.waitForTimeout(5000)
 
