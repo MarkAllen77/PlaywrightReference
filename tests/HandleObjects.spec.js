@@ -57,23 +57,23 @@ test('Handle Web Objects', async ({page}) => {
 
 
     // //-----How to handle Dropdown-----
-    // const pageURL = 'https://testautomationpractice.blogspot.com/'
+    // const pageURL2 = 'https://testautomationpractice.blogspot.com/'
     // const countryDropdown = page.locator('#country')
 
-    // await page.goto(pageURL)
+    // await page.goto(pageURL2)
 
     // //commands to select options
     // await countryDropdown.selectOption({label:'Japan'})
-    // await page.waitForTimeout(2000)
+    // await page.waitForTimeout(200)
 
     // await countryDropdown.selectOption('United States')
-    // await page.waitForTimeout(2000)
+    // await page.waitForTimeout(200)
 
     // await countryDropdown.selectOption({value: 'uk'})
-    // await page.waitForTimeout(2000)
+    // await page.waitForTimeout(200)
 
     // await countryDropdown.selectOption({index: 8})
-    // await page.waitForTimeout(2000)
+    // await page.waitForTimeout(200)
 
     // //assertions
     // const options1 = await page.locator('#country option')
@@ -110,26 +110,56 @@ test('Handle Web Objects', async ({page}) => {
     // }
 
 
-    //-----How to handle Multiple select Dropdown-----
-    const pageURL = 'https://testautomationpractice.blogspot.com/'
-    const colorsMultiDropdown = page.locator('#colors')
+    // //-----How to handle Multiple select Dropdown-----
+    // //const pageURL = 'https://testautomationpractice.blogspot.com/'
+    // const colorsMultiDropdown = page.locator('#colors')
 
-    await page.goto(pageURL)
+    // await page.goto(pageURL2)
 
-    //await page.selectOption('#colors', ['Blue', 'Red', 'Yellow'])
-    await colorsMultiDropdown.scrollIntoViewIfNeeded()
-    await colorsMultiDropdown.selectOption(['Blue', 'Red', 'Yellow'])
+    // //await page.selectOption('#colors', ['Blue', 'Red', 'Yellow'])
+    // await colorsMultiDropdown.scrollIntoViewIfNeeded()
+    // await colorsMultiDropdown.selectOption(['Blue', 'Red', 'Yellow'])
 
-    //assertions
-    const multiOptions1 = await page.locator('#colors option')
-    await expect(multiOptions1).toHaveCount(5)
+    // //assertions
+    // const multiOptions1 = await page.locator('#colors option')
+    // await expect(multiOptions1).toHaveCount(5)
 
-    const multiOptions2 = await page.$$('#colors option')
-    console.log('Number of Multi Options: ', multiOptions2.length)
-    await expect(multiOptions2.length).toBe(5)
+    // const multiOptions2 = await page.$$('#colors option')
+    // console.log('Number of Multi Options: ', multiOptions2.length)
+    // await expect(multiOptions2.length).toBe(5)
 
-    const multiOptionContent = await page.locator('#colors').textContent()
-    await expect(multiOptionContent.includes('Blue')).toBeTruthy() 
+    // const multiOptionContent = await page.locator('#colors').textContent()
+    // await expect(multiOptionContent.includes('Blue')).toBeTruthy() 
+
+
+    // //-----How to handle Bootstrap Multiple select Dropdown-----
+    // const pageURL3 = 'https://www.jquery-az.com/boots/demo.php?ex=63.0_2'
+    // const bootstrapDropdown = page.locator('.multiselect')
+    // const bootstrapDropdownOptions = page.locator('ul> li label input')
+
+    // await page.goto(pageURL3)
+
+    // await bootstrapDropdown.click()
+    // await expect (bootstrapDropdownOptions).toHaveCount(11)
+
+    // const bootstrapDropdownOptionsList = await page.$$('ul> li label input')
+    // await expect(bootstrapDropdownOptionsList.length).toBe(11)
+
+    // const bootstrapDropdownOptions2 = await page.$$('ul> li label')
+    // for (let option of bootstrapDropdownOptions2)
+    // {
+    //     const value = await option.textContent()
+    //     console.log("Value is: ", value)
+    //     if (value.includes('Angular') || value.includes('Java'))
+    //     {
+    //         await option.click()
+    //     }
+
+    //     if (value.includes('HTML') || value.includes('CSS'))
+    //     {
+    //         await option.click()
+    //     }
+    // }
 
     await page.waitForTimeout(5000)
 
