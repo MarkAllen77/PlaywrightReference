@@ -209,17 +209,61 @@ test('Handle Web Objects', async ({page}) => {
     //     }
     // }
 
-    //-----How to handle Hidden Items in Dropdown-----
-    const pageURL5 = 'https://opensource-demo.orangehrmlive.com/'
-    //const autoDropdown = page.locator('//input[@id="src"]')
+    // //-----How to handle Hidden Items in Dropdown-----
+    // const pageURL5 = 'https://opensource-demo.orangehrmlive.com/'
+    // //const autoDropdown = page.locator('//input[@id="src"]')
 
-    await page.goto(pageURL5)
+    // await page.goto(pageURL5)
 
-    await page.locator('[name="username"]').fill('Admin')
-    await page.locator('[name="password"]').fill('admin123')
-    await page.locator('[type="submit"]').click()
+    // await page.locator('[name="username"]').fill('Admin')
+    // await page.locator('[name="password"]').fill('admin123')
+    // await page.locator('[type="submit"]').click()
 
 
+    //-----How to handle Dialogs or Alerts-----
+    const pageURL6 = 'https://testautomationpractice.blogspot.com/'
+
+    const alertButton = page.locator('//button[normalize-space()="Alert"]')
+    const confirmBoxButton = page.locator('//button[normalize-space()="Confirm Box"]')
+    const promptButton = page.locator('//button[normalize-space()="Prompt"]')
+
+    await page.goto(pageURL6)
+
+    // page.on('dialog', async dialog => {
+    //     expect(dialog.type()).toContain('alert')
+    //     expect(dialog.message()).toContain('I am an alert box')
+
+    //     await page.waitForTimeout(3000)
+    //     await dialog.accept()
+    // })
+    // await alertButton.click()
+
+    // await page.waitForTimeout(5000)
+
+    // page.on('dialog', async dialog => {
+    //     expect(dialog.type()).toContain('confirm')
+    //     expect(dialog.message()).toContain('Press a button')
+
+    //     await page.waitForTimeout(2000)
+    //     //await dialog.dismiss()
+    //     await dialog.accept()
+    // })
+    // await confirmBoxButton.click()
+    // await expect(page.locator('//p[@id="demo"]')).toHaveText('You pressed OK!')
+
+    // await page.waitForTimeout(5000)
+
+    page.on('dialog', async dialog => {
+        expect(dialog.type()).toContain('prompt')
+        expect(dialog.message()).toContain('Please enter your name')
+        expect(dialog.defaultValue()).toContain('Harry Potter')
+
+        await page.waitForTimeout(2000)
+
+        await dialog.accept('John')
+    })
+    await promptButton.click()
+    await expect(page.locator('//p[@id="demo"]')).toHaveText('Hello John! How are you today?')
 
     await page.waitForTimeout(5000)
 
