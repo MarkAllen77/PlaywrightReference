@@ -186,28 +186,40 @@ import {test, expect} from '@playwright/test'
 // })
 
 test('Handle Web Objects', async ({page}) => {    
-    //-----How to handle Dropdown auto suggestions-----
-    const pageURL4 = 'https://www.redbus.in/'
-    const autoDropdown = page.locator('//input[@id="src"]')
-    const autoDropdownOptions = page.waitForSelector('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
+    // //-----How to handle Dropdown auto suggestions-----
+    // const pageURL4 = 'https://www.redbus.in/'
+    // const autoDropdown = page.locator('//input[@id="src"]')
+    // const autoDropdownOptions = page.waitForSelector('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
 
-    await page.goto(pageURL4)
+    // await page.goto(pageURL4)
 
-    await autoDropdown.fill('Delhi')
-    await autoDropdownOptions
-    const autoOptions = await page.$$('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
+    // await autoDropdown.fill('Delhi')
+    // await autoDropdownOptions
+    // const autoOptions = await page.$$('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
 
-    for (let option of autoOptions)
-    {
-        const value = await option.textContent()
-        console.log(value)
+    // for (let option of autoOptions)
+    // {
+    //     const value = await option.textContent()
+    //     console.log(value)
 
-        if (value.includes('RK Ashram'))
-        {
-            await option.click()
-            break;
-        }
-    }
+    //     if (value.includes('RK Ashram'))
+    //     {
+    //         await option.click()
+    //         break;
+    //     }
+    // }
+
+    //-----How to handle Hidden Items in Dropdown-----
+    const pageURL5 = 'https://opensource-demo.orangehrmlive.com/'
+    //const autoDropdown = page.locator('//input[@id="src"]')
+
+    await page.goto(pageURL5)
+
+    await page.locator('[name="username"]').fill('Admin')
+    await page.locator('[name="password"]').fill('admin123')
+    await page.locator('[type="submit"]').click()
+
+
 
     await page.waitForTimeout(5000)
 
