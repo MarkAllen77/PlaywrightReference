@@ -288,6 +288,13 @@ test('Handle Web Objects', async ({page}) => {
     const frame3TextBox = await page.frameLocator('frame[src="frame_3.html"]').locator('//input[@name="mytext3"]')
     frame3TextBox.fill('Frame3')
 
+    //-----How to handle Inner / Nested Frames-----
+    const frame3 = await page.frame({url:'https://ui.vision/demo/webtest/frames/frame_3.html'})
+
+    const childFrames = await frame3.childFrames()
+
+    await childFrames[0].locator('//*[@id="i5"]/div[3]/div').check()
+
     await page.waitForTimeout(5000)
 
 })
