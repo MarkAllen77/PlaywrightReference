@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test'
 
-// test.describe('Add a simple invoice test', async () => {
+// test.describe('Serial execution of test', async () => {
 //     test.describe.configure({ mode: 'serial' })
     
 //     let page
@@ -209,6 +209,7 @@ test('Handle Web Objects', async ({page}) => {
     //     }
     // }
 
+
     // //-----How to handle Hidden Items in Dropdown-----
     // const pageURL5 = 'https://opensource-demo.orangehrmlive.com/'
     // //const autoDropdown = page.locator('//input[@id="src"]')
@@ -220,50 +221,72 @@ test('Handle Web Objects', async ({page}) => {
     // await page.locator('[type="submit"]').click()
 
 
-    //-----How to handle Dialogs or Alerts-----
-    const pageURL6 = 'https://testautomationpractice.blogspot.com/'
+    // //-----How to handle Dialogs or Alerts-----
+    // const pageURL6 = 'https://testautomationpractice.blogspot.com/'
 
-    const alertButton = page.locator('//button[normalize-space()="Alert"]')
-    const confirmBoxButton = page.locator('//button[normalize-space()="Confirm Box"]')
-    const promptButton = page.locator('//button[normalize-space()="Prompt"]')
+    // const alertButton = page.locator('//button[normalize-space()="Alert"]')
+    // const confirmBoxButton = page.locator('//button[normalize-space()="Confirm Box"]')
+    // const promptButton = page.locator('//button[normalize-space()="Prompt"]')
 
-    await page.goto(pageURL6)
+    // await page.goto(pageURL6)
 
+    // //Handle alert dialog
+    // // page.on('dialog', async dialog => {
+    // //     expect(dialog.type()).toContain('alert')
+    // //     expect(dialog.message()).toContain('I am an alert box')
+
+    // //     await page.waitForTimeout(3000)
+    // //     await dialog.accept()
+    // // })
+    // // await alertButton.click()
+
+    // // await page.waitForTimeout(5000)
+
+    // //Handle confirm dialog
+    // // page.on('dialog', async dialog => {
+    // //     expect(dialog.type()).toContain('confirm')
+    // //     expect(dialog.message()).toContain('Press a button')
+
+    // //     await page.waitForTimeout(2000)
+    // //     //await dialog.dismiss()
+    // //     await dialog.accept()
+    // // })
+    // // await confirmBoxButton.click()
+    // // await expect(page.locator('//p[@id="demo"]')).toHaveText('You pressed OK!')
+
+    // // await page.waitForTimeout(5000)
+
+    // //Handle prompt dialog
     // page.on('dialog', async dialog => {
-    //     expect(dialog.type()).toContain('alert')
-    //     expect(dialog.message()).toContain('I am an alert box')
-
-    //     await page.waitForTimeout(3000)
-    //     await dialog.accept()
-    // })
-    // await alertButton.click()
-
-    // await page.waitForTimeout(5000)
-
-    // page.on('dialog', async dialog => {
-    //     expect(dialog.type()).toContain('confirm')
-    //     expect(dialog.message()).toContain('Press a button')
+    //     expect(dialog.type()).toContain('prompt')
+    //     expect(dialog.message()).toContain('Please enter your name')
+    //     expect(dialog.defaultValue()).toContain('Harry Potter')
 
     //     await page.waitForTimeout(2000)
-    //     //await dialog.dismiss()
-    //     await dialog.accept()
+
+    //     await dialog.accept('John')
     // })
-    // await confirmBoxButton.click()
-    // await expect(page.locator('//p[@id="demo"]')).toHaveText('You pressed OK!')
+    // await promptButton.click()
+    // await expect(page.locator('//p[@id="demo"]')).toHaveText('Hello John! How are you today?')
 
-    // await page.waitForTimeout(5000)
 
-    page.on('dialog', async dialog => {
-        expect(dialog.type()).toContain('prompt')
-        expect(dialog.message()).toContain('Please enter your name')
-        expect(dialog.defaultValue()).toContain('Harry Potter')
+    //-----How to handle Frames/iFrames-----
+    const pageURL7 = 'https://ui.vision/demo/webtest/frames/'
 
-        await page.waitForTimeout(2000)
+    await page.goto(pageURL7)
+    page.waitForLoadState('domcontentloaded')
 
-        await dialog.accept('John')
-    })
-    await promptButton.click()
-    await expect(page.locator('//p[@id="demo"]')).toHaveText('Hello John! How are you today?')
+    //total frames
+    const allframes = await page.frames()
+    console.log("Number of frames: ", allframes.length)
+
+    //approach 1: using name or url
+    const frame1 = await page.frame({url:'https://ui.vision/demo/webtest/frames/frame_1.html'})
+    await frame1.fill('//input[@name="mytext1"]','Hello')
+
+    //approach 2: using frame locator
+    const frame3TextBox = await page.frameLocator('frame[src="frame_3.html"]').locator('//input[@name="mytext3"]')
+    frame3TextBox.fill('Frame3')
 
     await page.waitForTimeout(5000)
 
