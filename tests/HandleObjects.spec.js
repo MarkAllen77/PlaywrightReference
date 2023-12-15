@@ -20,6 +20,9 @@ import {test, expect} from '@playwright/test'
 
 //         await page.goto(pageURL)
 
+//         await page.keyboard.press('F5')
+
+
 //         await expect(firstnameInput).toBeVisible()
 //         await expect(firstnameInput).toBeEmpty()
 //         await expect(firstnameInput).toBeEditable()
@@ -183,125 +186,265 @@ import {test, expect} from '@playwright/test'
 //         }
 //     })
 
+
+//     test('Handle Web Objects - Dropdown auto suggestions', async () => {
+//         //-----How to handle Dropdown auto suggestions-----
+//         const pageURL4 = 'https://www.redbus.in/'
+//         const autoDropdown = page.locator('//input[@id="src"]')
+//         const autoDropdownOptions = page.waitForSelector('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
+
+//         await page.goto(pageURL4)
+
+//         await autoDropdown.fill('Delhi')
+//         await autoDropdownOptions
+//         const autoOptions = await page.$$('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
+
+//         for (let option of autoOptions)
+//         {
+//             const value = await option.textContent()
+//             console.log(value)
+
+//             if (value.includes('RK Ashram'))
+//             {
+//                 await option.click()
+//                 break;
+//             }
+//         }
+//     })
+
+
+//     test('Handle Web Objects - Hidden Items in Dropdown', async () => {
+//         //-----How to handle Hidden Items in Dropdown-----
+//         const pageURL5 = 'https://opensource-demo.orangehrmlive.com/'
+//         //const autoDropdown = page.locator('//input[@id="src"]')
+
+//         await page.goto(pageURL5)
+
+//         await page.locator('[name="username"]').fill('Admin')
+//         await page.locator('[name="password"]').fill('admin123')
+//         await page.locator('[type="submit"]').click()
+//     })
+
+
+//     test('Handle Web Objects - Dialogs or Alerts', async () => {
+//         //-----How to handle Dialogs or Alerts-----
+//         const pageURL6 = 'https://testautomationpractice.blogspot.com/'
+
+//         const alertButton = page.locator('//button[normalize-space()="Alert"]')
+//         const confirmBoxButton = page.locator('//button[normalize-space()="Confirm Box"]')
+//         const promptButton = page.locator('//button[normalize-space()="Prompt"]')
+
+//         await page.goto(pageURL6)
+
+//         //Handle alert dialog
+//         // page.on('dialog', async dialog => {
+//         //     expect(dialog.type()).toContain('alert')
+//         //     expect(dialog.message()).toContain('I am an alert box')
+
+//         //     await page.waitForTimeout(3000)
+//         //     await dialog.accept()
+//         // })
+//         // await alertButton.click()
+
+//         // await page.waitForTimeout(5000)
+
+//         //Handle confirm dialog
+//         // page.on('dialog', async dialog => {
+//         //     expect(dialog.type()).toContain('confirm')
+//         //     expect(dialog.message()).toContain('Press a button')
+
+//         //     await page.waitForTimeout(2000)
+//         //     //await dialog.dismiss()
+//         //     await dialog.accept()
+//         // })
+//         // await confirmBoxButton.click()
+//         // await expect(page.locator('//p[@id="demo"]')).toHaveText('You pressed OK!')
+
+//         // await page.waitForTimeout(5000)
+
+//         //Handle prompt dialog
+//         page.on('dialog', async dialog => {
+//             expect(dialog.type()).toContain('prompt')
+//             expect(dialog.message()).toContain('Please enter your name')
+//             expect(dialog.defaultValue()).toContain('Harry Potter')
+
+//             await page.waitForTimeout(2000)
+
+//             await dialog.accept('John')
+//         })
+//         await promptButton.click()
+//         await expect(page.locator('//p[@id="demo"]')).toHaveText('Hello John! How are you today?')
+//     })
+
+
+//     test('Handle Web Objects - Frames/iFrames', async () => {
+//         //-----How to handle Frames/iFrames-----
+//         const pageURL7 = 'https://ui.vision/demo/webtest/frames/'
+
+//         await page.goto(pageURL7)
+//         page.waitForLoadState('domcontentloaded')
+
+//         //total frames
+//         const allframes = await page.frames()
+//         console.log("Number of frames: ", allframes.length)
+
+//         //approach 1: using name or url
+//         const frame1 = await page.frame({url:'https://ui.vision/demo/webtest/frames/frame_1.html'})
+//         await frame1.fill('//input[@name="mytext1"]','Hello')
+
+//         //approach 2: using frame locator
+//         const frame3TextBox = await page.frameLocator('frame[src="frame_3.html"]').locator('//input[@name="mytext3"]')
+//         frame3TextBox.fill('Frame3')
+
+//         //-----How to handle Inner / Nested Frames-----
+//         const frame3 = await page.frame({url:'https://ui.vision/demo/webtest/frames/frame_3.html'})
+
+//         const childFrames = await frame3.childFrames()
+
+//         await childFrames[0].locator('//*[@id="i5"]/div[3]/div').check()
+//     })
+
+
+//     test('Handle Web Objects - WebTable/Pagination', async () => {
+//         //-----How to handle WebTable/Pagination-----
+//         const pageURL8 = 'https://testautomationpractice.blogspot.com/'
+//         await page.goto(pageURL8)
+
+//         const tablescrollIntoViewIfNeeded = await page.locator('#productTable').scrollIntoViewIfNeeded()
+//         const table = await page.locator('#productTable')
+
+//         //count rows and columns
+//         const columns = await table.locator('thead tr th')
+//         const rows = await table.locator('tbody tr')
+
+//         console.log('Number of columns: ', await columns.count())
+//         console.log('Number of rows: ', await rows.count())
+//         expect(await columns.count()).toBe(4)
+//         expect(await rows.count()).toBe(5)
+
+//         //select checkbox
+//         const productName = 'Product 1'
+//         const matchedRow = rows.filter({
+//             has: page.locator('td'),
+//             hasText: productName
+//         })
+//         await matchedRow.locator('input').check()
+
+//         //select mulitple checkbox
+//         await selectProduct(rows, page, 'Product 3')
+//         await selectProduct(rows, page, 'Product 4')
+//         await selectProduct(rows, page, 'Product 5')
+
+//         //retrieve all product details
+//         for (let x=0; x < await rows.count(); x++)
+//         {
+//             const row = rows.nth(x)
+//             const td = row.locator('td')
+
+//             let productNameData = ""
+
+//             for (let y=0; y < await td.count()-1; y++)
+//             {
+//                 let columnData = await td.nth(y).textContent()
+//                 productNameData = productNameData + columnData + " "
+//             }   
+//             console.log(productNameData) 
+//         }
+
+//         //retrieve all product details from all pages
+//         const pages = await page.locator('.pagination li a')
+//         console.log('Number of pages: ', await pages.count())
+
+//         for (let p=0; p < await pages.count(); p++)
+//         {
+//             if (p > 0)
+//             {
+//                 await pages.nth(p).click()
+//             }
+//             for (let x=0; x < await rows.count(); x++)
+//             {
+//                 const row = rows.nth(x)
+//                 const td = row.locator('td')
+
+//                 let productNameData = ""
+
+//                 for (let y=0; y < await td.count()-1; y++)
+//                 {
+//                     let columnData = await td.nth(y).textContent()
+//                     productNameData = productNameData + columnData + " "
+//                 }   
+//                 console.log(productNameData) 
+//             }
+//         }
+//     })
 // })
 
-test('Handle Web Objects', async ({page}) => {    
-    // //-----How to handle Dropdown auto suggestions-----
-    // const pageURL4 = 'https://www.redbus.in/'
-    // const autoDropdown = page.locator('//input[@id="src"]')
-    // const autoDropdownOptions = page.waitForSelector('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
+test('Handle Web Objects - Date Pickers', async ({page}) => {    
+    //-----How to handle Date Pickers/Calendars-----
+    const pageURL9 = 'https://testautomationpractice.blogspot.com/'
+    await page.goto(pageURL9)
 
-    // await page.goto(pageURL4)
+    const datePicker = page.locator('//input[@id="datepicker"]')
 
-    // await autoDropdown.fill('Delhi')
-    // await autoDropdownOptions
-    // const autoOptions = await page.$$('//li[contains(@class,"sc-iwsKbI")]/div/text[1]')
+    //direct type date
+    await datePicker.scrollIntoViewIfNeeded()
+    await datePicker.click()
+    await datePicker.pressSequentially('12/12/2023')
 
-    // for (let option of autoOptions)
+    //using date picker
+    const dateString  = '3/15/2024'
+    const dateStringSplit = dateString.split('/')
+    const monthName = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    const month = monthName[dateStringSplit[0]-1]
+    const day = dateStringSplit[1]
+    const year = dateStringSplit[2]
+
+    await datePicker.click()
+
+    while(true)
+    {
+        const displayedYear = await page.locator('.ui-datepicker-year').textContent()
+        const displayedMonth = await page.locator('.ui-datepicker-month').textContent()
+
+        if(displayedYear == year && displayedMonth == month)
+        {
+            break;
+        }
+
+        await page.locator('[title="Next"]').click()
+    }
+
+    // //take all the dates and select specific
+    // const dates = await page.$$('//a[@class="ui-state-default"]')
+    // for (const date of dates)
     // {
-    //     const value = await option.textContent()
-    //     console.log(value)
-
-    //     if (value.includes('RK Ashram'))
+    //     if (await date.textContent() == day)
     //     {
-    //         await option.click()
+    //         await date.click()
     //         break;
     //     }
+    //     console.log(await date.textContent())
     // }
 
-
-    // //-----How to handle Hidden Items in Dropdown-----
-    // const pageURL5 = 'https://opensource-demo.orangehrmlive.com/'
-    // //const autoDropdown = page.locator('//input[@id="src"]')
-
-    // await page.goto(pageURL5)
-
-    // await page.locator('[name="username"]').fill('Admin')
-    // await page.locator('[name="password"]').fill('admin123')
-    // await page.locator('[type="submit"]').click()
-
-
-    // //-----How to handle Dialogs or Alerts-----
-    // const pageURL6 = 'https://testautomationpractice.blogspot.com/'
-
-    // const alertButton = page.locator('//button[normalize-space()="Alert"]')
-    // const confirmBoxButton = page.locator('//button[normalize-space()="Confirm Box"]')
-    // const promptButton = page.locator('//button[normalize-space()="Prompt"]')
-
-    // await page.goto(pageURL6)
-
-    // //Handle alert dialog
-    // // page.on('dialog', async dialog => {
-    // //     expect(dialog.type()).toContain('alert')
-    // //     expect(dialog.message()).toContain('I am an alert box')
-
-    // //     await page.waitForTimeout(3000)
-    // //     await dialog.accept()
-    // // })
-    // // await alertButton.click()
-
-    // // await page.waitForTimeout(5000)
-
-    // //Handle confirm dialog
-    // // page.on('dialog', async dialog => {
-    // //     expect(dialog.type()).toContain('confirm')
-    // //     expect(dialog.message()).toContain('Press a button')
-
-    // //     await page.waitForTimeout(2000)
-    // //     //await dialog.dismiss()
-    // //     await dialog.accept()
-    // // })
-    // // await confirmBoxButton.click()
-    // // await expect(page.locator('//p[@id="demo"]')).toHaveText('You pressed OK!')
-
-    // // await page.waitForTimeout(5000)
-
-    // //Handle prompt dialog
-    // page.on('dialog', async dialog => {
-    //     expect(dialog.type()).toContain('prompt')
-    //     expect(dialog.message()).toContain('Please enter your name')
-    //     expect(dialog.defaultValue()).toContain('Harry Potter')
-
-    //     await page.waitForTimeout(2000)
-
-    //     await dialog.accept('John')
-    // })
-    // await promptButton.click()
-    // await expect(page.locator('//p[@id="demo"]')).toHaveText('Hello John! How are you today?')
-
-
-    //-----How to handle Frames/iFrames-----
-    const pageURL7 = 'https://ui.vision/demo/webtest/frames/'
-
-    await page.goto(pageURL7)
-    page.waitForLoadState('domcontentloaded')
-
-    //total frames
-    const allframes = await page.frames()
-    console.log("Number of frames: ", allframes.length)
-
-    //approach 1: using name or url
-    const frame1 = await page.frame({url:'https://ui.vision/demo/webtest/frames/frame_1.html'})
-    await frame1.fill('//input[@name="mytext1"]','Hello')
-
-    //approach 2: using frame locator
-    const frame3TextBox = await page.frameLocator('frame[src="frame_3.html"]').locator('//input[@name="mytext3"]')
-    frame3TextBox.fill('Frame3')
-
-    //-----How to handle Inner / Nested Frames-----
-    const frame3 = await page.frame({url:'https://ui.vision/demo/webtest/frames/frame_3.html'})
-
-    const childFrames = await frame3.childFrames()
-
-    await childFrames[0].locator('//*[@id="i5"]/div[3]/div').check()
+    //select specific date
+    await page.click(`//a[@class='ui-state-default'][text()='${day}']`)
 
     await page.waitForTimeout(5000)
+    //await new Promise(() => {})
 
 })
 
+async function selectProduct(rows, page, productName)
+{
+    const matchedRow = rows.filter({
+        has: page.locator('td'),
+        hasText: productName
+    })
+    await matchedRow.locator('input').check()
+}
+
 
 // test('Handle', async () => {
-    
-
 
 // })
