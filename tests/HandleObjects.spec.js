@@ -3,30 +3,32 @@ import {test, expect} from '@playwright/test'
 // test.describe('Serial execution of test', async () => {
 //     test.describe.configure({ mode: 'serial' })
     
+//     let context
 //     let page
 //     test.beforeAll(async ({ browser }) => {
-//       page = await browser.newPage();
+//         page = await browser.newPage();
 //     });
 //     test.afterAll(async () => {
 //         await page.close();
 //     });
 
-//     test('Handle Web Objects - Input and Radio', async () => {
+
+//     test('Handle Web Objects - Input and Radio', async ({page}) => {
 //         //-----How to handle Input box & Radio Buttons-----
 //         //const pageURL = 'https://demoqa.com/login'
+//         //test.setTimeout(120000)
+
 //         let pageURL = 'https://demoqa.com/automation-practice-form'
-//         const firstnameInput = page.locator('//input[@id="firstName"]')
-//         const lastnameInput = page.locator('//input[@id="lastName"]')
 
 //         await page.goto(pageURL)
 
-//         await page.keyboard.press('F5')
-
+//         const firstnameInput = page.locator('//input[@id="firstName"]')
+//         const lastnameInput = page.locator('//input[@id="lastName"]')
 
 //         await expect(firstnameInput).toBeVisible()
 //         await expect(firstnameInput).toBeEmpty()
 //         await expect(firstnameInput).toBeEditable()
-//         await expect(firstnameInput).toBeEnabled()
+//         //await expect(firstnameInput).toBeEnabled()
 
 //         await firstnameInput.fill('John')
 //         await lastnameInput.fill('Doe')
@@ -42,10 +44,7 @@ import {test, expect} from '@playwright/test'
 //         await expect(genderFemaleRadiobutton).not.toBeChecked()
 //         //await expect(genderFemaleRadiobutton.isChecked()).toBeFalsy()
 //         await expect(await page.locator('//label[normalize-space()="Female"]').isChecked()).toBeFalsy()
-//     })
 
-
-//     test('Handle Web Objects - Checkbox', async () => {    
 //         //-----How to handle Single Checkboxes-----
 //         //const hobbiesSportsCheckbox = page.locator('//input[@id="hobbies-checkbox-1"]')
 //         const hobbiesSportsCheckbox = page.locator('//label[normalize-space()="Sports"]')
@@ -58,11 +57,9 @@ import {test, expect} from '@playwright/test'
 
 //         await expect(hobbiesReadingCheckbox).not.toBeChecked()
 //         //await expect.soft(hobbiesReadingCheckbox).toBeChecked()
-//     })
 
-
-//     test('Handle Web Objects - Multi Checkbox', async () => {
 //         //-----How to handle Multiple Checkboxes-----
+
 //         const hobbiesCheckboxes = [ page.locator('//label[normalize-space()="Sports"]'),
 //                                     page.locator('//label[normalize-space()="Reading"]'), 
 //                                     page.locator('//label[normalize-space()="Music"]')
@@ -72,10 +69,10 @@ import {test, expect} from '@playwright/test'
 //             //check will select the checkbox, click will select or unselect
 //             await box.click()
 //         }
-//     })
+//     })        
 
 
-//     test('Handle Web Objects - Dropdown', async () => {    
+//     test('Handle Web Objects - Dropdown', async ({page}) => {    
 //         //-----How to handle Dropdown-----
 //         const pageURL2 = 'https://testautomationpractice.blogspot.com/'
 //         const countryDropdown = page.locator('#country')
@@ -131,7 +128,7 @@ import {test, expect} from '@playwright/test'
 //     })
 
 
-//     test('Handle Web Objects - Multi Dropdown', async () => {
+//     test('Handle Web Objects - Multi Dropdown', async ({page}) => {
 //         //-----How to handle Multiple select Dropdown-----
 //         const pageURL2 = 'https://testautomationpractice.blogspot.com/'
 //         const colorsMultiDropdown = page.locator('#colors')
@@ -155,7 +152,7 @@ import {test, expect} from '@playwright/test'
 //     })
 
 
-//     test('Handle Web Objects - Bootstrap Dropdown', async () => {
+//     test('Handle Web Objects - Bootstrap Dropdown', async ({page}) => {
 //         //-----How to handle Bootstrap Multiple select Dropdown-----
 //         const pageURL3 = 'https://www.jquery-az.com/boots/demo.php?ex=63.0_2'
 //         const bootstrapDropdown = page.locator('.multiselect')
@@ -187,7 +184,7 @@ import {test, expect} from '@playwright/test'
 //     })
 
 
-//     test('Handle Web Objects - Dropdown auto suggestions', async () => {
+//     test('Handle Web Objects - Dropdown auto suggestions', async ({page}) => {
 //         //-----How to handle Dropdown auto suggestions-----
 //         const pageURL4 = 'https://www.redbus.in/'
 //         const autoDropdown = page.locator('//input[@id="src"]')
@@ -213,7 +210,7 @@ import {test, expect} from '@playwright/test'
 //     })
 
 
-//     test('Handle Web Objects - Hidden Items in Dropdown', async () => {
+//     test('Handle Web Objects - Hidden Items in Dropdown', async ({page}) => {
 //         //-----How to handle Hidden Items in Dropdown-----
 //         const pageURL5 = 'https://opensource-demo.orangehrmlive.com/'
 //         //const autoDropdown = page.locator('//input[@id="src"]')
@@ -226,7 +223,7 @@ import {test, expect} from '@playwright/test'
 //     })
 
 
-//     test('Handle Web Objects - Dialogs or Alerts', async () => {
+//     test('Handle Web Objects - Dialogs or Alerts', async ({page}) => {
 //         //-----How to handle Dialogs or Alerts-----
 //         const pageURL6 = 'https://testautomationpractice.blogspot.com/'
 
@@ -277,7 +274,7 @@ import {test, expect} from '@playwright/test'
 //     })
 
 
-//     test('Handle Web Objects - Frames/iFrames', async () => {
+//     test('Handle Web Objects - Frames/iFrames', async ({page}) => {
 //         //-----How to handle Frames/iFrames-----
 //         const pageURL7 = 'https://ui.vision/demo/webtest/frames/'
 
@@ -305,7 +302,7 @@ import {test, expect} from '@playwright/test'
 //     })
 
 
-//     test('Handle Web Objects - WebTable/Pagination', async () => {
+//     test('Handle Web Objects - WebTable/Pagination', async ({page}) => {
 //         //-----How to handle WebTable/Pagination-----
 //         const pageURL8 = 'https://testautomationpractice.blogspot.com/'
 //         await page.goto(pageURL8)
@@ -377,62 +374,74 @@ import {test, expect} from '@playwright/test'
 //             }
 //         }
 //     })
+
+
+//     test('Handle Web Objects - Date Pickers', async ({page}) => {    
+//         //-----How to handle Date Pickers/Calendars-----
+//         const pageURL9 = 'https://testautomationpractice.blogspot.com/'
+//         await page.goto(pageURL9)
+    
+//         const datePicker = page.locator('//input[@id="datepicker"]')
+    
+//         //direct type date
+//         await datePicker.scrollIntoViewIfNeeded()
+//         await datePicker.click()
+//         await datePicker.pressSequentially('12/12/2023')
+    
+//         //using date picker
+//         const dateString  = '3/15/2024'
+//         const dateStringSplit = dateString.split('/')
+//         const monthName = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    
+//         const month = monthName[dateStringSplit[0]-1]
+//         const day = dateStringSplit[1]
+//         const year = dateStringSplit[2]
+    
+//         await datePicker.click()
+    
+//         while(true)
+//         {
+//             const displayedYear = await page.locator('.ui-datepicker-year').textContent()
+//             const displayedMonth = await page.locator('.ui-datepicker-month').textContent()
+    
+//             if(displayedYear == year && displayedMonth == month)
+//             {
+//                 break;
+//             }
+    
+//             await page.locator('[title="Next"]').click()
+//         }
+    
+//         // //take all the dates and select specific
+//         // const dates = await page.$$('//a[@class="ui-state-default"]')
+//         // for (const date of dates)
+//         // {
+//         //     if (await date.textContent() == day)
+//         //     {
+//         //         await date.click()
+//         //         break;
+//         //     }
+//         //     console.log(await date.textContent())
+//         // }
+    
+//         //select specific date
+//         await page.click(`//a[@class='ui-state-default'][text()='${day}']`)   
+//     })
 // })
 
-test('Handle Web Objects - Date Pickers', async ({page}) => {    
+test('Handle Web Objects - Mouse Hover', async ({page}) => {    
     //-----How to handle Date Pickers/Calendars-----
-    const pageURL9 = 'https://testautomationpractice.blogspot.com/'
+    const pageURL9 = 'https://demo.opencart.com/'
     await page.goto(pageURL9)
 
-    const datePicker = page.locator('//input[@id="datepicker"]')
+    const menuDesktops = page.locator('//a[normalize-space()="Desktops"]')
+    const subDesktopsMac = page.locator('//a[normalize-space()="Mac (1)"]')
 
-    //direct type date
-    await datePicker.scrollIntoViewIfNeeded()
-    await datePicker.click()
-    await datePicker.pressSequentially('12/12/2023')
-
-    //using date picker
-    const dateString  = '3/15/2024'
-    const dateStringSplit = dateString.split('/')
-    const monthName = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-    const month = monthName[dateStringSplit[0]-1]
-    const day = dateStringSplit[1]
-    const year = dateStringSplit[2]
-
-    await datePicker.click()
-
-    while(true)
-    {
-        const displayedYear = await page.locator('.ui-datepicker-year').textContent()
-        const displayedMonth = await page.locator('.ui-datepicker-month').textContent()
-
-        if(displayedYear == year && displayedMonth == month)
-        {
-            break;
-        }
-
-        await page.locator('[title="Next"]').click()
-    }
-
-    // //take all the dates and select specific
-    // const dates = await page.$$('//a[@class="ui-state-default"]')
-    // for (const date of dates)
-    // {
-    //     if (await date.textContent() == day)
-    //     {
-    //         await date.click()
-    //         break;
-    //     }
-    //     console.log(await date.textContent())
-    // }
-
-    //select specific date
-    await page.click(`//a[@class='ui-state-default'][text()='${day}']`)
+    await menuDesktops.hover()
+    await subDesktopsMac.hover()
 
     await page.waitForTimeout(5000)
     //await new Promise(() => {})
-
 })
 
 async function selectProduct(rows, page, productName)
@@ -443,8 +452,3 @@ async function selectProduct(rows, page, productName)
     })
     await matchedRow.locator('input').check()
 }
-
-
-// test('Handle', async () => {
-
-// })
