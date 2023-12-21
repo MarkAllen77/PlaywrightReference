@@ -429,16 +429,56 @@ import {test, expect} from '@playwright/test'
 //     })
 // })
 
-test('Handle Web Objects - Mouse Hover', async ({page}) => {    
-    //-----How to handle Date Pickers/Calendars-----
-    const pageURL9 = 'https://demo.opencart.com/'
-    await page.goto(pageURL9)
+test('Handle Web Objects - Mouse Actions', async ({page}) => {    
+    //-----How to handle Mouse Hover-----
+    let pageURL10 = 'https://demo.opencart.com/'
+    await page.goto(pageURL10)
 
     const menuDesktops = page.locator('//a[normalize-space()="Desktops"]')
     const subDesktopsMac = page.locator('//a[normalize-space()="Mac (1)"]')
 
     await menuDesktops.hover()
     await subDesktopsMac.hover()
+
+
+    //-----How to handle Mouse Right Click-----
+    pageURL10 = 'https://swisnl.github.io/jQuery-contextMenu/demo.html'
+    await page.goto(pageURL10)
+    
+    const buttonRightClick = page.locator('//span[@class="context-menu-one btn btn-neutral"]')
+    await buttonRightClick.click({button:'right'})
+
+    const pasteContext = page.locator('//span[normalize-space()="Paste"]')
+    await pasteContext.hover()
+
+
+    //-----How to handle Mouse Double Click-----
+    pageURL10 = 'https://testautomationpractice.blogspot.com/'
+    await page.goto(pageURL10)
+    
+    const buttonDoubleClick = page.locator('//button[normalize-space()="Copy Text"]')
+    await buttonDoubleClick.dblclick()
+
+    const field1 = page.locator('#field1').inputValue()
+    console.log("Text is: ", await field1)
+
+    const field2 = page.locator('#field2')
+    await expect(field2).toHaveValue(await field1)
+
+    //-----How to handle Mouse Drag and Drop-----
+    pageURL10 = 'https://testautomationpractice.blogspot.com/'
+    await page.goto(pageURL10)
+
+    const draggable = page.locator('//div[@id="draggable"]')
+    const droppable = page.locator('//div[@id="droppable"]')
+
+    await draggable.dragTo(droppable)
+
+    // await draggable.hover()
+    // await page.mouse.down()
+
+    // await droppable.hover()
+    // await page.mouse.up()
 
     await page.waitForTimeout(5000)
     //await new Promise(() => {})
