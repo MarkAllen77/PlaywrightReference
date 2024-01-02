@@ -1,4 +1,5 @@
 import {test, expect} from '@playwright/test'
+let page
 
 // test.describe('Serial execution of test', async () => {
 //     test.describe.configure({ mode: 'serial' })
@@ -473,39 +474,70 @@ import {test, expect} from '@playwright/test'
 
 //         await draggable.dragTo(droppable)
 
+//         //      -or-
+
 //         // await draggable.hover()
 //         // await page.mouse.down()
 
 //         // await droppable.hover()
 //         // await page.mouse.up()
+//     })
 
-//         await page.waitForTimeout(5000)
-//         //await new Promise(() => {})
+
+//     test('Handle Web Objects - Keyboard Actions', async ({page}) => {    
+//         //-----How to handle Keyboard Actions-----
+//         let pageURL11 = 'https://gotranscript.com/text-compare/'
+//         await page.goto(pageURL11)
+
+//         const fromTextArea = page.locator('//textarea[@name="text1"]')
+//         const toTextArea = page.locator('//textarea[@name="text2"]')
+//         const buttonCompare = page.locator('//button[@id="recaptcha"]')
+
+//         await fromTextArea.fill('Hello World was here')
+//         await fromTextArea.click()
+//         await fromTextArea.press('Control+A')
+//         await fromTextArea.press('Control+C')
+
+//         await toTextArea.click()
+//         await page.keyboard.press('Control+V')
+
+//         await buttonCompare.click()
+//     })
+
+
+//     test('Handle Web Objects - Upload files', async ({page}) => {    
+//         //-----How to handle upload files-----
+//         test.setTimeout(120000);
+        
+//         let pageURL12 = 'https://www.foundit.in/'
+//         await page.goto(pageURL12)
+
+//         await page.waitForSelector('//i[@class="mqfihd-upload"]')
+
+//         //upload single file
+//         const uploadButton = page.locator('//i[@class="mqfihd-upload"]')
+//         const windowsUpload = page.locator('//input[@id="file-upload"]')
+
+//         await uploadButton.click()
+//         await windowsUpload.setInputFiles('C:/Temp/sample1.txt')
+
+//         //upload mulitple file
+//         pageURL12 = 'https://davidwalsh.name/demo/multiple-file-upload.php'
+//         await page.goto(pageURL12)
+
+//         const filesToUploadButton = page.locator('//input[@id="filesToUpload"]')
+//         await filesToUploadButton.setInputFiles(['C:/Temp/sample1.txt','C:/Temp/sample2.txt'])
+
+//         await page.waitForTimeout(3000)
+//         expect (await page.locator('#fileList li:nth-child(1)')).toHaveText('sample1.txt')
+//         expect (await page.locator('#fileList li:nth-child(2)')).toHaveText('sample2.txt')
+
+//         await page.waitForTimeout(3000)
+//         await filesToUploadButton.setInputFiles([])
+
+//         expect (await page.locator('#fileList li:nth-child(1)')).toHaveText('No Files Selected')
 //     })
 // })
-
-test('Handle Web Objects - Keyboard Actions', async ({page}) => {    
-    //-----How to handle Keyboard Actions-----
-    let pageURL11 = 'https://gotranscript.com/text-compare/'
-    await page.goto(pageURL11)
-
-    const fromTextArea = page.locator('//textarea[@name="text1"]')
-    const toTextArea = page.locator('//textarea[@name="text2"]')
-    const buttonCompare = page.locator('//button[@id="recaptcha"]')
-
-    await fromTextArea.fill('Hello World was here')
-    await fromTextArea.click()
-    await fromTextArea.press('Control+A')
-    await fromTextArea.press('Control+C')
-
-    await toTextArea.click()
-    await page.keyboard.press('Control+V')
-
-    await buttonCompare.click()
-
-    await page.waitForTimeout(5000)
-    //await new Promise(() => {})
-})
 
 async function selectProduct(rows, page, productName)
 {
