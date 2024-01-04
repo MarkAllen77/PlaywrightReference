@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 let page
 
-test.beforeEach('Login', async ({browser}) => {    
+test.beforeAll('Login', async ({browser}) => {    
     //-----How to handle Hooks - beforeEach, afterEach, beforeAll & afterAll----- 
     page = await browser.newPage()
 
@@ -20,7 +20,7 @@ test.beforeEach('Login', async ({browser}) => {
 })
 
 
-test.afterEach('Logout', async () => {    
+test.afterAll('Logout', async () => {    
     //-----How to handle Hooks - beforeEach, afterEach, beforeAll & afterAll----- 
     const loginLogoutButton = page.locator('//a[@id="logout2"]')
     await loginLogoutButton.click()
@@ -51,3 +51,57 @@ test('Add Product to Cart Test', async ()=> {
         await dialog.accept()
     })
 })
+
+
+test.describe('Group 1', async ()=> {
+    test('Test 1', async ()=> {
+        console.log('Test 1')
+    })
+    
+    test('Test 2', async ()=> {
+        console.log('Test 2')
+    })    
+})
+
+test.describe('Group 2', async ()=> {
+    test('Test 3', async ()=> {
+        console.log('Test 3')
+    })
+    
+    test('Test 4', async ()=> {
+        console.log('Test 4')
+    })
+})
+
+test.describe('Group 3', async ()=> {
+    test('Screen Capture', async ()=> {
+        const today = new Date()
+        const yyyy = today.getFullYear()
+        let MM = today.getMonth() + 1
+        let dd = today.getDate()
+        let hh = today.getHours()
+        let mm = today.getMinutes()
+        let ss = today.getSeconds()
+
+        if (dd < 10) dd = '0' + dd;
+        if (MM < 10) MM = '0' + MM;
+
+        let newURL = 'https://demo.opencart.com/'
+        await page.goto(newURL)
+
+        const formattedToday = MM + dd + yyyy + '_' + hh + mm + ss;
+
+        //page screenshot
+        await page.screenshot({path:'tests/screenshots/page_'+ formattedToday +'.png'})
+
+        //fullpage screenshot
+        await page.screenshot({path:'tests/screenshots/full_'+ formattedToday +'.png', fullPage: true})
+
+        //element screenshot
+        const elementTarget = page.locator('//*[@id="content"]/div[2]/div[1]/form/div')
+        await elementTarget.screenshot({path:'tests/screenshots/element_'+ formattedToday +'.png'})
+
+        await page.goBack();
+    })
+})
+
