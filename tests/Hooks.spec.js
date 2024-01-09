@@ -25,13 +25,15 @@ test.afterAll('Logout', async () => {
     const loginLogoutButton = page.locator('//a[@id="logout2"]')
     await loginLogoutButton.click()
 
-    await page.waitForTimeout(5000)
+    await page.waitForTimeout(3000)
     //await new Promise(() => {})
 })
 
 
 test('Home Page Test', async () => {    
-    //-----How to handle Hooks - beforeEach, afterEach, beforeAll & afterAll-----    
+    //-----How to handle Hooks - beforeEach, afterEach, beforeAll & afterAll----- 
+    await page.waitForTimeout(3000)
+
     const productDisplayed = await page.$$('.hrefch')
     expect(productDisplayed).toHaveLength(9)
 })

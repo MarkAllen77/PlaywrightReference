@@ -1,0 +1,38 @@
+import {test, expect} from '@playwright/test'
+
+test('Test Title1@fast', async({page}) => {
+    console.log('Test 1')
+})
+
+test('Test Title2@reg', async({page}) => {
+    console.log('Test 2')
+})
+
+test('Test Title3@fast', async({page}) => {
+    console.log('Test 3')
+})
+
+test('Test Title4@reg', async({page}) => {
+    console.log('Test 4')
+})
+
+test('Test Title5@fast@reg', async({page}) => {
+    console.log('Test 5')
+})
+
+test('Test Title6@slow', async({page}) => {
+    console.log('Test 6')
+})
+
+test('Test Title7@slow', async({page, browserName}) => {
+    if (browserName === 'firefox')
+    {   
+        test.skip()
+    }
+
+    console.log('Test 7')
+})
+
+test.fixme('Test Title8@slow', async({page, browserName}) => {
+    console.log('Test 8')
+})
