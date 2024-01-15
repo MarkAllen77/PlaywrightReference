@@ -1,4 +1,5 @@
 import {test, expect} from '@playwright/test'
+import {chromium} from '@playwright/test'
 let page
 
 // test.describe('Serial execution of test', async () => {
@@ -59,7 +60,6 @@ let page
 //         //await expect.soft(hobbiesReadingCheckbox).toBeChecked()
 
 //         //-----How to handle Multiple Checkboxes-----
-
 //         const hobbiesCheckboxes = [ page.locator('//label[normalize-space()="Sports"]'),
 //                                     page.locator('//label[normalize-space()="Reading"]'), 
 //                                     page.locator('//label[normalize-space()="Music"]')
@@ -532,12 +532,53 @@ let page
 //         expect (await page.locator('#fileList li:nth-child(1)')).toHaveText('sample1.txt')
 //         expect (await page.locator('#fileList li:nth-child(2)')).toHaveText('sample2.txt')
 
-//         await page.waitForTimeout(3000)
-//         await filesToUploadButton.setInputFiles([])
-
 //         expect (await page.locator('#fileList li:nth-child(1)')).toHaveText('No Files Selected')
 //     })
 // })
+
+
+test('Handle Web Objects - Pages and Window', async () => {
+    const browser = await chromium.launch()
+    const context = await browser.newContext()
+
+    const page1 = await context.newPage()
+    const page2 = await context.newPage()
+
+    const allPages = context.pages()
+
+    console.log('Pages: ', allPages.length)
+
+    await page1.goto('https://opensource-demo.orangehrmlive.com/')
+    await expect (page1).toHaveTitle('OrangeHRM')
+
+    await page2.goto('https://www.orangehrm.com/')
+    await expect (page2).toHaveTitle('OrangeHRM HR Software | OrangeHRM')
+})
+
+
+test.only('Handle Web Objects - Multiple Pages and Window', async () => {
+    const browser = await chromium.launch()
+    const context = await browser.newContext()
+
+    const page1 = await context.newPage()
+    await page1.goto('https://opensource-demo.orangehrmlive.com/')
+    await expect (page1).toHaveTitle('OrangeHRM')
+
+    const pagePromise = context.waitForEvent('page')
+    await page1.locator('//a[normalize-space()="OrangeHRM, Inc"]').click()
+
+    const newPage = await pagePromise
+    await expect (newPage).toHaveTitle('OrangeHRM HR Software | OrangeHRM')
+
+    await newPage.locator('//input[@id="Form_submitForm_EmailHomePage"]').fill('sample text')
+
+    await page1.bringToFront()
+    await page1.locator('//input[@placeholder="Username"]').fill('username123')
+  
+    await page1.waitForTimeout(3000)
+    // await new Promise(() => {})
+})
+
 
 async function selectProduct(rows, page, productName)
 {
