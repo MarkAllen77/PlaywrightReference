@@ -15,39 +15,39 @@
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>Assertions.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>Builtin.Locators.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>examples.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>HandleObjects.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>HomePageTest.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>Hooks.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>Locators.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>Multitest.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td>.spec.js</td>
+    <td>pom1.spec.js</td>
     <td></td>
   </tr>  
 </table>
