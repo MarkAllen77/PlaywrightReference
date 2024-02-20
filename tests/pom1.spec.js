@@ -1,4 +1,5 @@
-import {test, expect} from '@playwright/test'
+//import {test, expect} from '@playwright/test'
+const { test, expect } = require('@playwright/test')
 
 //none POM setup
 // test ('test', async ({page}) => {
@@ -9,11 +10,15 @@ import {test, expect} from '@playwright/test'
 //     await page.locator('//button[normalize-space()="Log in"]').click()
 // })
 
-import {LoginPage} from './pages/pom2.spec'
-import {HomePage} from './pages/pom3.spec'
-import {CartPage} from './pages/pom4.spec'
+// import {LoginPage} from './pages/pom2.spec.js'
+// import {HomePage} from './pages/pom3.spec.js'
+// import {CartPage} from './pages/pom4.spec.js'
 
-test ('test', async ({page}) => {
+const LoginPage = require('./pages/pom2.spec.js')
+const HomePage = require('./pages/pom3.spec.js')
+const CartPage = require('./pages/pom4.spec.js')
+
+test ('MyTest', async ({page}) => {
     test.setTimeout(0)
 
     const LoginPageInstance = new LoginPage(page)

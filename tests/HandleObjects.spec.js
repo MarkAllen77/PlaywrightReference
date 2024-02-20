@@ -536,7 +536,7 @@ test.describe('Serial execution of test', async () => {
     })
 
 
-    test('Handle Web Objects - Pages and Window', async () => {
+    test.only('Handle Web Objects - Pages and Window', async () => {
         const browser = await chromium.launch()
         const context = await browser.newContext()
     

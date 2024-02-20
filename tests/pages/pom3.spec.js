@@ -1,5 +1,4 @@
-exports.HomePage =
-class HomePage {
+export class HomePage {
 
     constructor (page) {
         this.page = page
@@ -33,3 +32,4 @@ class HomePage {
         await this.page.locator(this.cart).click()
     }
 }
+module.exports = HomePage;

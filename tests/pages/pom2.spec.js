@@ -1,5 +1,4 @@
-exports.LoginPage =
-class LoginPage {
+export class LoginPage {
 
     constructor (page) {
         this.page = page
@@ -20,3 +19,4 @@ class LoginPage {
         await this.page.locator(this.loginButton).click()
     }
 }
+module.exports = LoginPage;	
