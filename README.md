@@ -1,6 +1,6 @@
 # Playwright using Javascript from SDET-QA
 **PROGRAMMING LANGUAGE:** *Javascript*<br />
-**INTRO:** *Pyton programming as shown in https://www.youtube.com/watch?v=yOuElUSfAs8*<br /> 
+**INTRO:** *Playwright and Javascript programming as shown in https://www.youtube.com/watch?v=yOuElUSfAs8*<br /> 
 **FUNCTIONS:**<br />
   &nbsp;&nbsp;&nbsp; 
 <br />
@@ -11,11 +11,43 @@
     <th>Description</th>
   </tr>
   <tr>
-    <td></td>
+    <td>APITests.spec.js</td>
     <td></td>
   </tr>
   <tr>
-    <td></td>
+    <td>.spec.js</td>
     <td></td>
   </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>.spec.js</td>
+    <td></td>
+  </tr>  
 </table>
