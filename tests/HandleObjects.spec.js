@@ -2,6 +2,8 @@ import {test, expect} from '@playwright/test'
 import {chromium} from '@playwright/test'
 let page
 
+// NOTE: npx playwright test tests/handleobjects.spec.js --project chromium --headed
+
 test.describe('Serial execution of test', async () => {
     test.describe.configure({ mode: 'serial' })
     
@@ -536,7 +538,7 @@ test.describe('Serial execution of test', async () => {
     })
 
 
-    test.only('Handle Web Objects - Pages and Window', async () => {
+    test('Handle Web Objects - Pages and Window', async () => {
         const browser = await chromium.launch()
         const context = await browser.newContext()
     
