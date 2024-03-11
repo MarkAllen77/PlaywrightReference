@@ -12,42 +12,42 @@
   </tr>
   <tr>
     <td>APITests.spec.js</td>
-    <td></td>
+    <td>api sample test using playwright</td>
   </tr>
   <tr>
     <td>Assertions.spec.js</td>
-    <td></td>
+    <td>soft and hard assertion implementation</td>
   </tr>
   <tr>
     <td>Builtin.Locators.spec.js</td>
-    <td></td>
+    <td>how playwright use locators to find web objects</td>
   </tr>
   <tr>
     <td>examples.spec.js</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>HandleObjects.spec.js</td>
-    <td></td>
+    <td>introduction to playwright</td>
   </tr>
   <tr>
     <td>HomePageTest.spec.js</td>
-    <td></td>
+    <td>introduction to playwright, opening site url</td>
+  </tr>  
+  <tr>
+    <td>HandleObjects.spec.js</td>
+    <td>asychronous functions interacting with different web objects</td>
   </tr>
   <tr>
     <td>Hooks.spec.js</td>
-    <td></td>
+    <td>implementation of hooks (setup adn teardown) in playwright</td>
   </tr>
   <tr>
     <td>Locators.spec.js</td>
-    <td></td>
+    <td>how are locators used in playwright</td>
   </tr>
   <tr>
     <td>Multitest.spec.js</td>
-    <td></td>
+    <td>executing several asynchronous tests</td>
   </tr>
   <tr>
     <td>pom1.spec.js</td>
-    <td></td>
+    <td>main page for the POM pattern, all other files located at pages folder</td>
   </tr>  
 </table>
