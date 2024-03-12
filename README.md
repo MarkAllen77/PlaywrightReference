@@ -17,8 +17,6 @@
   &nbsp;&nbsp;&nbsp; HandleUploadFiles<br />
   &nbsp;&nbsp;&nbsp; HandlePagesWindows<br />
   &nbsp;&nbsp;&nbsp; HandleMultiplePagesWindows<br />
-  &nbsp;&nbsp;&nbsp; HandleCaptureScreen<br />
-  &nbsp;&nbsp;&nbsp; HandleUsingClass<br /> 
 <br />
 **JAVASCRIPT FILES:**<br />
 <table>
