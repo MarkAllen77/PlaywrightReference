@@ -50,7 +50,7 @@
   </tr>
   <tr>
     <td>Hooks.spec.js</td>
-    <td>implementation of hooks (setup adn teardown) in playwright</td>
+    <td>implementation of hooks (setup and teardown) in playwright, including screen capture</td>
   </tr>
   <tr>
     <td>Locators.spec.js</td>
