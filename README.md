@@ -63,5 +63,9 @@
   <tr>
     <td>pom1.spec.js</td>
     <td>main page for the POM pattern, all other files located at pages folder</td>
+  </tr>
+  <tr>
+    <td>Market.spec.js</td>
+    <td>used to compare playwright and selenium speed</td>
   </tr>  
 </table>
